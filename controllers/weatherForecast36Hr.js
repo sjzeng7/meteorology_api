@@ -40,8 +40,6 @@ module.exports = router.post("/", async (req, res) => {
       }
     }
     // 回傳成功的回應
-    console.log("=======timeArray");
-    console.log(timeArray);
     const weatherForecast36Hr = {
       maxTemp: maxTemp,
       minTemp: minTemp,
