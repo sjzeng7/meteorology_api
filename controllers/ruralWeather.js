@@ -19,69 +19,31 @@ let url = ""
 module.exports = router.post("/", async (req, res) => {
   // selecteData內容包含selecteTownships跟selectedCounty
   const { selecteData } = req.body;
-  if (selecteData.selectedCounty === "嘉義縣") {
-    url = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-031?Authorization=CWB-7BF18B7E-F0E5-45E9-828D-0FB84504F83B&sort=time"
+  const map = {
+    "臺北市": '063',
+    "嘉義縣": '031',
+    "新北市": '071',
+    "嘉義市": '059',
+    "新竹縣": '011',
+    "新竹市": '055',
+    "臺南市": '079',
+    "宜蘭縣": '003',
+    "苗栗縣": '015',
+    "雲林縣": '027',
+    "花蓮縣": '043',
+    "臺中市": '075',
+    "臺東縣": '039',
+    "桃園市": '007',
+    "南投縣": '023',
+    "高雄市": '067',
+    "金門縣": '087',
+    "屏東縣": '035',
+    "基隆市": '051',
+    "澎湖縣": '047',
+    "連江縣": '083'
   }
-  if (selecteData.selectedCounty === "新北市") {
-    url = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-071?Authorization=CWB-7BF18B7E-F0E5-45E9-828D-0FB84504F83B"
-  }
-  if (selecteData.selectedCounty === "嘉義市") {
-    url = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-059?Authorization=CWB-7BF18B7E-F0E5-45E9-828D-0FB84504F83B"
-  }
-  if (selecteData.selectedCounty === "新竹縣") {
-    url = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-011?Authorization=CWB-7BF18B7E-F0E5-45E9-828D-0FB84504F83B"
-  }
-  if (selecteData.selectedCounty === "新竹市") {
-    url = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-055?Authorization=CWB-7BF18B7E-F0E5-45E9-828D-0FB84504F83B"
-  }
-  if (selecteData.selectedCounty === "臺北市") {
-    url = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-063?Authorization=CWB-7BF18B7E-F0E5-45E9-828D-0FB84504F83B"
-  }
-  if (selecteData.selectedCounty === "臺南市") {
-    url = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-079?Authorization=CWB-7BF18B7E-F0E5-45E9-828D-0FB84504F83B"
-  }
-  if (selecteData.selectedCounty === "宜蘭縣") {
-    url = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-003?Authorization=CWB-7BF18B7E-F0E5-45E9-828D-0FB84504F83B"
-  }
-  if (selecteData.selectedCounty === "苗栗縣") {
-    url = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-015?Authorization=CWB-7BF18B7E-F0E5-45E9-828D-0FB84504F83B"
-  }
-  if (selecteData.selectedCounty === "雲林縣") {
-    url = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-027?Authorization=CWB-7BF18B7E-F0E5-45E9-828D-0FB84504F83B"
-  }
-  if (selecteData.selectedCounty === "花蓮縣") {
-    url = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-043?Authorization=CWB-7BF18B7E-F0E5-45E9-828D-0FB84504F83B"
-  }
-  if (selecteData.selectedCounty === "臺中市") {
-    url = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-075?Authorization=CWB-7BF18B7E-F0E5-45E9-828D-0FB84504F83B"
-  }
-  if (selecteData.selectedCounty === "臺東縣") {
-    url = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-039?Authorization=CWB-7BF18B7E-F0E5-45E9-828D-0FB84504F83B"
-  }
-  if (selecteData.selectedCounty === "桃園市") {
-    url = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-007?Authorization=CWB-7BF18B7E-F0E5-45E9-828D-0FB84504F83B"
-  }
-  if (selecteData.selectedCounty === "南投縣") {
-    url = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-023?Authorization=CWB-7BF18B7E-F0E5-45E9-828D-0FB84504F83B"
-  }
-  if (selecteData.selectedCounty === "高雄市") {
-    url = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-067?Authorization=CWB-7BF18B7E-F0E5-45E9-828D-0FB84504F83B"
-  }
-  if (selecteData.selectedCounty === "金門縣") {
-    url = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-087?Authorization=CWB-7BF18B7E-F0E5-45E9-828D-0FB84504F83B"
-  }
-  if (selecteData.selectedCounty === "屏東縣") {
-    url = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-035?Authorization=CWB-7BF18B7E-F0E5-45E9-828D-0FB84504F83B"
-  }
-  if (selecteData.selectedCounty === "基隆市") {
-    url = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-051?Authorization=CWB-7BF18B7E-F0E5-45E9-828D-0FB84504F83B"
-  }
-  if (selecteData.selectedCounty === "澎湖縣") {
-    url = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-047?Authorization=CWB-7BF18B7E-F0E5-45E9-828D-0FB84504F83B"
-  }
-  if (selecteData.selectedCounty === "連江縣") {
-    url = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-083?Authorization=CWB-7BF18B7E-F0E5-45E9-828D-0FB84504F83B"
-  }
+  url = `https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-${map[selecteData.selectedCounty]}?Authorization=CWB-7BF18B7E-F0E5-45E9-828D-0FB84504F83B`
+
   try {
     // 發送 GET 請求到外部 API
     const response = await axios.get(
